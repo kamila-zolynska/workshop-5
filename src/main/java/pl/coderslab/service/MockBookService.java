@@ -3,17 +3,21 @@ package pl.coderslab.service;
 import org.springframework.stereotype.Service;
 import pl.coderslab.model.Book;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
 public class MockBookService {
-    private static List<Book> books = List.of(
-            new Book(1L, "9788324631766", "Thinking in Java",
-                    "Bruce Eckel", "Helion", "programming"),
-            new Book(2L, "4848484665565", "Nawyki warte miliony. ",
-                    "Brian Tracy", "Onpress", "psychology")
-    );
+    private static List<Book> books;
+    public MockBookService() {
+        books = new ArrayList<>();
+        books.add(new Book(1L, "9788324631766", "Thinking in Java",
+                "Bruce Eckel", "Helion", "programming"));
+        books.add(new Book(2L, "4848484665565", "Nawyki warte miliony. ",
+                "Brian Tracy", "Onpress", "psychology"));
+    }
+
     private static Long nextBookId = 3L;
 
     public List<Book> getAllBooks() {
