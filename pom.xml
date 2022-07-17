@@ -12,11 +12,9 @@
   <packaging>war</packaging>
 
   <properties>
-<!--    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <spring-framework.version>5.1.9.RELEASE</spring-framework.version>
-<!--    <failOnMissingWebXml>false</failOnMissingWebXml>-->
   </properties>
 
   <dependencies>
@@ -42,6 +40,4 @@
       <version>1.18.20</version>
     </dependency>
   </dependencies>
-
-
 </project>

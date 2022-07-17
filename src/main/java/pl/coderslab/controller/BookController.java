@@ -1,6 +1,7 @@
 package pl.coderslab.controller;
 
 import lombok.Data;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.Book;
 import pl.coderslab.service.MockBookService;
@@ -24,17 +25,6 @@ public class BookController {
     public Book bookById(@PathVariable Long id) {
         return mockBookService.getBookById(id);
     }
-
-//    @PostMapping()
-//    public void addBook(@RequestBody Long id,
-//                          @RequestBody String isbn,
-//                          @RequestBody String title,
-//                          @RequestBody String author,
-//                          @RequestBody String publisher,
-//                          @RequestBody String type) {
-//        mockBookService.addBookToList(new Book(id, isbn, title, author, publisher, type));
-////        return "Ksiazka o id: " + id + " zostaa dodana do biblioteki";
-//    }
 
     @PostMapping()
     public String addBook(@RequestBody Book book) {
