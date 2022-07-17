@@ -1,22 +1,56 @@
 package pl.coderslab.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Data;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.Book;
+import pl.coderslab.service.MockBookService;
+
+import java.util.List;
 
 
 @RestController
 @RequestMapping("/books")
+@Data
 public class BookController {
- 
-    @RequestMapping("/helloBook")
-    public Book helloBook() {
-        return new Book(1L, "9788324631766", "Thinking in Java",
-                "Bruce Eckel", "Helion", "programming");
+
+    private final MockBookService mockBookService;
+
+    @GetMapping
+    public List<Book> allBooks() {
+        return mockBookService.getAllBooks();
     }
 
-    @RequestMapping("/helloBook2")
-    public String helloBook2() {
-        return "hello";
+    @GetMapping("/{id}")
+    public Book bookById(@PathVariable Long id) {
+        return mockBookService.getBookById(id);
+    }
+
+//    @PostMapping()
+//    public void addBook(@RequestBody Long id,
+//                          @RequestBody String isbn,
+//                          @RequestBody String title,
+//                          @RequestBody String author,
+//                          @RequestBody String publisher,
+//                          @RequestBody String type) {
+//        mockBookService.addBookToList(new Book(id, isbn, title, author, publisher, type));
+////        return "Ksiazka o id: " + id + " zostaa dodana do biblioteki";
+//    }
+
+    @PostMapping()
+    public String addBook(@RequestBody Book book) {
+        mockBookService.addBookToList(book);
+        return "Ksiazka zostala dodana.";
+    }
+
+    @PutMapping()
+    public String modifyBook(@RequestBody Book book) {
+        mockBookService.modifyBook(book);
+        return "Ksiazka zostala zmodyfikowana";
+    }
+
+    @DeleteMapping("/{id}")
+    public String removeBookById(@PathVariable Long id) {
+        mockBookService.removeBookById(id);
+        return "Ksiazka zostala usunieta.";
     }
 }
